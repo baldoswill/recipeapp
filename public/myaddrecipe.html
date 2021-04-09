@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/fontawesome/css/all.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <title>Recipe Dashboard</title>
+</head>
+<body>
+    <div class="main-container">    
+        <div class="main-wrapper">
+            <div id="sidebar-nav">
+                <h1 class="site-brand">
+                     <span class="site-brand-text">Cookz</span>   
+                </h1>
+
+                <h2 class="category-menu">
+                    Discover
+                </h2>
+
+                <ul class="discover">
+                    <li class="active">
+                        <i class="fa fa-home"></i><a href="#" class="discover-link">Home</a>
+                    </li>                     
+                    <li>
+                        <i class="fas fa-heart"></i> <a href="#" class="discover-link">My Favorites</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-utensils"></i> <a href="#" class="discover-link">My Recipes</a>
+                    </li>
+                    <li>
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i> <a href="#" class="discover-link">Add Recipe</a>
+                    </li>
+                </ul>
+
+            </div>
+            <div id="main-content">
+                    <div class="header-wrapper">
+                        <div class="searchbar-wrapper">
+                            <i class="fas fa-search"></i> <input type="text" name="search" id="search" placeholder="Search for recipes">
+                        </div>
+                        <div class="user-menu">
+                             <div class="user-menu-wrapper">
+                                <img class = "user-pic" src = "assets//images/54.jpg" />
+                                <span class = "user-name">William Salas</span>
+                             </div>
+                            
+                        </div>
+                    </div>                   
+                  
+                    <h2 class="daily-recipes-title">Add Recipe</h2>
+                                      
+                    <form class="add-recipe-form ">
+                        <div class="control-group">
+                            <label for="title">Recipe Title</label>
+                            <input type="text" name="title" id="title">
+                        </div>
+                        <div class="control-group">
+                            <label for="preparation">Servings</label>
+                            <input type="text" name="preparation" id="preparation">
+                        </div>
+                        <div class="control-group">
+                            <label for="preparation">Time of Preparation</label>
+                            <input type="text" name="preparation" id="preparation">
+                        </div>
+                        <div class="control-group">
+                            <label for="ingredients">Ingredients</label>
+                            <input type="text" name="ingredients" id="ingredients">
+                        </div>
+                        <div class="control-group">
+                            <label for="preparation">Preparation</label>
+                            <input type="text" name="preparation" id="preparation">
+                        </div>
+                        <div class="control-group">
+                            <button type="submit" class="btn btn-add">Add New Recipe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

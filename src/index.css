@@ -1,13 +1,651 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+/* General */
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+    line-height: 1.7;
+    font-family: 'Open Sans', serif;
+    background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+    color: #313131;
+ 
 }
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+
+.btn{
+    padding: .8rem 2rem;
+    outline: none;
+    border: none;
+    border-radius: 27px;
+    cursor: pointer;
+    font-family: 'Nunito';
+    font-weight: bold;    
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.btn-add{
+    background-color: #fe5196;
+    color: #fff;
+    float: right;
+    transition: .5s ease-in-out all;
+}
+
+.btn-add:hover{
+    cursor: pointer;
+    background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+}
+
+
+
+.btn-login, .btn-signup{
+    background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%)  ;
+    color: #fff;
+    display: block  !important;
+    width: 100%;
+    transition: background-position .3s cubic-bezier(.47, .1, 1, .63),
+    color .2s linear;
+     
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+   
+   
+    -webkit-transition: ease-out 0.4s;
+    -moz-transition: ease-out 0.4s;
+    transition: ease-out 0.4s;
+ 
+    background-size: 200% auto;    
+    background-image: linear-gradient(to right, #fda085 0%, #fe5196 50%, #f77062 100%)  ;       
+}
+
+.btn-login:hover, .btn-signup:hover {
+    background-position: right center; /* change the direction of the change here */
+  }
+
+  .btn-signup{
+      
+      margin-top: 3rem;
+  }
+
+
+  .control-group{
+    margin-bottom: 2rem;  
+    font-size: .9rem;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    display: block;
+}
+ 
+
+ .control-group input{
+    font-size: .9rem;
+    font-family: 'Nunito';
+    font-weight: bold;
+    display: block !important;
+    width: 100% !important;
+    padding:.6rem 1rem;
+    border: none;
+    background-color: #F2F2F2;
+    outline: none;
+    margin-top: .3rem;
+    border-radius: 27px;
+}  
+
+.error-input{
+    color: #F7003C;
+    font-size: .7rem;
+    margin-top: .4rem;
+    margin-left: .4rem;
+}
+  
+/* 
+
+Toastify 
+
+ */
+
+ 
+.Toastify__toast--success {
+    background-color: #11FF71 !important;
+    color: #191919;
+} 
+
+
+/* Main Container */
+
+.main-container{
+    margin:auto;
+    max-width: 1010px;     
+    background-color: #fff;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border-radius: 25px;
+    margin: 5rem auto;
+}
+
+.main-wrapper{
+    width: 100%; 
+    max-width: 100%;
+    display: grid;
+    justify-content: space-between !important;
+    grid-template-columns: 1.5fr 5fr;
+}
+  
+
+#main-content, #sidebar-nav{
+    padding: 2rem
+}
+
+
+/* Sidebar */
+
+#sidebar-nav .category-menu{
+    text-transform: uppercase;
+    color: #DDDDDD;
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+#sidebar-nav .discover li{
+    margin: .8rem 0;    
+}
+  
+#sidebar-nav .discover li .discover-link{   
+    color: #161707;
+    font-size: .9rem;
+    font-weight: 650;
+    transition: .3s ease-in-out all;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+#sidebar-nav .discover li .discover-link:hover{ 
+     opacity: .7;
+     cursor: pointer;
+}
+
+#sidebar-nav .discover li.active > *{
+    color: #fe5196  !important;
+}
+
+#sidebar-nav .discover li > i{
+    vertical-align: middle; 
+    margin-right: 1rem;
+    font-size: 1.3rem;
+}
+
+
+
+#sidebar-nav .site-brand{
+    font-size: 1.6rem;
+    font-weight: 900;
+    font-family: 'Nunito', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
+}
+#sidebar-nav .site-brand i{
+    font-size: 1.4rem;    
+}
+
+
+/* Main Content : Search Bar */
+
+#main-content .header-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2rem;      
+}
+
+#main-content .header-wrapper input {
+    outline: none;
+    padding: 1rem 1rem 1rem 2.2rem;
+    border: none;
+    color: #313131;
+    font-family: 'Nunito';
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+#main-content .header-wrapper input::placeholder {
+    font-family: 'Nunito';
+    font-weight: bold;
+    font-size: 1rem;
+    color: #98A3AF;
+   
+}
+
+#main-content .header-wrapper .searchbar-wrapper{
+    position: relative;
+}
+
+#main-content .header-wrapper .searchbar-wrapper i{
+    position: absolute;
+    left: 10px;
+    top: 20px;
+    color: #98A3AF;
+}
+
+#main-content .header-wrapper .user-menu .user-menu-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .5rem;
+}
+
+#main-content .header-wrapper .user-menu .user-menu-wrapper .user-pic{
+    border-radius: 50%;
+    width: 30px;
+}
+
+#main-content .header-wrapper .user-menu .user-menu-wrapper .user-name{
+    font-size: .8rem;
+    font-weight: 650;
+}
+ 
+
+/* Main Content: Top Recipes */
+ 
+ 
+#main-content .daily-recipes-title{
+    font-size: 1.2rem;
+    color: #313131;
+    font-weight: 900;
+    font-family: 'Nunito';
+    margin-bottom: 1rem;
+}
+ 
+#main-content .daily-recipes  {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+#main-content .daily-recipes  .daily-recipe-box{
+    background-color: #E3FBEC;    
+    border-radius: 27px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: .2rem;
+}
+
+#main-content .daily-recipes  .daily-recipe-box > i{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #fff;
+    font-size: 1.5rem;
+    transition: .3s ease-in-out opacity;
+    
+}
+
+#main-content .daily-recipes  .daily-recipe-box > i:hover{
+    opacity: .7;
+    cursor: pointer;
+}
+ 
+ 
+
+#main-content .daily-recipes  .daily-recipe-box img{ 
+    max-width:100%; 
+    height:auto; 
+    border-top-right-radius: 27px;
+    border-top-left-radius: 27px;
+} 
+
+#main-content .daily-recipes  .daily-recipe-box p{    
+    color: #313131;
+    font-weight: bold;
+    font-size: .9rem;   
+    text-align: center;
+    
+    padding: 0 .3rem .5rem .3rem;
+    transition: ease-in-out opacity 300ms;
+    font-family: 'Nunito';
+     
+}
+
+#main-content .daily-recipes  .daily-recipe-box p:hover{ 
+    opacity: .7;
+    cursor: pointer;
+}
+
+#main-content .add-recipe-form{
+    width: 100%;
+}
+
+
+#main-content .recipe-detail-image img{
+    display: block;
+    max-width:800px;
+    max-height:500px;
+    width: auto;
+    height: auto;
+    margin: 2rem 0;
+}
+
+#main-content .details-subtitle{
+    font-size: 1rem;
+    margin-top: 2rem;
+    margin-bottom: .8rem;
+}
+
+#main-content .recipe-information ul li{
+    font-size: .9rem;
+    line-height: 1.7;
+    padding: .5rem 0;
+}
+
+#main-content .recipe-information ul li > i{
+    margin-right: .5rem;
+    color: #E7EBEF;
+    font-size: .8rem;
+}
+
+#main-content .recipe-information{
+    margin-bottom: 3rem;
+}
+ 
+
+.divider i{
+    font-size: 1rem;
+}
+ 
+.divider:before,
+.divider:after {
+    background-color: #313131;
+    content: "";
+    display: inline-block;
+    height: 3px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+    margin: .5rem;
+}
+.divider:before {
+    /* right: 0.1em; */
+    margin-left: -50%;
+}
+.divider:after {
+    /* left: 0.1em; */
+    margin-right: -50%;
+}
+
+
+/* Login */
+
+
+
+.login-container, .main-container{
+    margin:auto;
+    max-width: 1010px;     
+    background-color: #fff;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+    border-radius: 10px;
+    margin: 5rem auto;
+}
+
+
+.login-container{
+    margin:8rem auto;
+    max-width: 500px;   
+    display: block !important;          
+    padding: 2rem 4rem;
+    font-family: 'Poppins', sans-serif;       
+}
+
+.login-container h1{
+    font-weight: bolder;
+    font-size: 2.5rem;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+/* TODO */
+
+.login-container  .form-control{
+    margin-top:1.7rem;
+    position: relative;
+}
+
+
+.login-container .form-control .effect-border{
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+    left: 0;
+    right: 0;
+    z-index: 3;
+    display: block;
+    transition: .3s ease-in all;    
+}
+
+.login-container input:focus ~ .effect-border{
+    width: 100%;
+}
+
+.login-container input:focus ~ i{
+    color: #fe5196
+}
+
+
+.login-container label{
+    font-size: .9rem;
+    display: block;
+    text-align: left;
+    margin-bottom: -1rem;
+}
+ 
+.login-container input{
+    font-size: 1.1rem;
+    font-weight: 500;
+    display: block;
+    color: #26282B;
+    width: 100%;
+    padding: 0 1rem 1rem 2.9rem;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #CFCED0;
+    transition: .4s all ease-in;
+}
+ 
+.login-container input:after {
+    display:block;
+    content: '';
+    border-bottom: solid 3px #019fb6;  
+    transform: scaleX(0);  
+    transition: transform 250ms ease-in-out;
+  }
+
+.login-container input::placeholder{
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #CFCED0;
+}
+ 
+
+.login-container .form-control i{
+    position: absolute;
+    top: 33px;
+    left: 10px;
+    color: #CFCED0;
+    font-size: 1.5rem;
+}
+
+.login-container .forgot-password-text{
+    float: right;
+    font-size: .8rem;
+    margin-top: .5rem;
+    transition: .3s ease-in opacity;
+    color: #191919;
+}
+
+.login-container .forgot-password-text:hover{
+    cursor: pointer;
+    opacity: .7;
+}
+ 
+
+.social-media-signup, .regular-signup{
+    margin-top: 4rem;
+    text-align: center;
+    font-size: .9rem;
+    color: #626262;
+}
+
+.social-media-signup i{
+    padding: .9rem;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 1.5rem;
+    transition: ease-in .3s all;
+}
+
+.social-media-signup i.fa-facebook:hover,
+.social-media-signup i.fa-github:hover,
+.social-media-signup i.fa-google:hover
+{
+    background-color: #312D2D;
+    cursor: pointer;
+}
+
+.social-media-signup i.fa-facebook{
+ 
+    background-color: #3B5998;
+    
+}
+
+.social-media-signup i.fa-google{
+ 
+    background-color: #EA4335;
+}
+
+.social-media-signup i.fa-github{
+ 
+    background-color: #161414;
+}
+
+.social-media-signup i:not(:last-child){
+    margin-right: .7rem;
+}
+
+.social-media-signup .social-media-icons{
+    margin-top: .8rem;
+}
+
+.regular-signup{
+    margin-top: 5rem;
+}
+
+.regular-signup .text-signup{
+    font-size: 1.2rem;
+    color: #292929;
+    font-weight: bold;
+    transition: .3s ease-in all;
+    margin-top: .2rem;
+}
+
+
+.regular-signup .text-signup:hover{
+    cursor: pointer;
+    opacity: .7;
+    
+    
+}
+
+
+.login-container .back-to-login{
+    text-align: center;
+    
+}
+
+.login-container .back-to-login-text{
+    font-size: .9rem;
+    color: #292929;    
+    transition: .3s ease-in opacity;
+}
+
+.login-container .back-to-login-text:hover{
+    cursor: pointer;
+    opacity: .7;
+}
+
+/* Responsive */
+
+
+@media(max-width: 996px){
+    
+     
+    .main-container{
+        margin-left: 2rem;    
+        margin-right: 1.5rem;    
+        
+    }
+   
+     
+}
+
+
+@media(max-width: 760px){
+    
+    #main-content .daily-recipes  {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+ 
+    #sidebar-nav{
+        position: absolute;
+        left: -999px;
+        top: 0;
+        
+    }
+    
+    .main-wrapper{
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        
+    }
+
+        
+    #main-content .daily-recipes  .daily-recipe-box img{ 
+        max-width:100%; 
+        height:auto; 
+        border-top-right-radius: 27px;
+        border-top-left-radius: 27px;
+    } 
+
+    .btn-add{
+        display: block !important;
+        width: 100% !important;
+
+    }
+        
+  
+}
+
+  
