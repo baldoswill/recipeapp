@@ -90,7 +90,7 @@ a{
 }
  
 
- .control-group input{
+ .control-group input, .control-group textarea{
     font-size: .9rem;
     font-family: 'Nunito';
     font-weight: bold;
@@ -102,7 +102,7 @@ a{
     outline: none;
     margin-top: .3rem;
     border-radius: 27px;
-}  
+}
 
 .error-input{
     color: #F7003C;
@@ -128,8 +128,8 @@ Toastify
 
 .main-container{
     margin:auto;
-    max-width: 1010px;     
-    background-color: #fff;    
+    max-width: 1010px;
+    background-color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -297,16 +297,19 @@ Toastify
     
 }
 
+#main-content .daily-recipes  .daily-recipe-box > i.active{
+    color: #D3324C;
+}
+
 #main-content .daily-recipes  .daily-recipe-box > i:hover{
     opacity: .7;
     cursor: pointer;
 }
- 
- 
 
-#main-content .daily-recipes  .daily-recipe-box img{ 
-    max-width:100%; 
-    height:auto; 
+#main-content .daily-recipes  .daily-recipe-box img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-top-right-radius: 27px;
     border-top-left-radius: 27px;
 } 
@@ -348,17 +351,11 @@ Toastify
     margin-bottom: .8rem;
 }
 
-#main-content .recipe-information ul li{
+#main-content .recipe-info-details{
     font-size: .9rem;
-    line-height: 1.7;
-    padding: .5rem 0;
+    line-height: 2.3;
 }
 
-#main-content .recipe-information ul li > i{
-    margin-right: .5rem;
-    color: #E7EBEF;
-    font-size: .8rem;
-}
 
 #main-content .recipe-information{
     margin-bottom: 3rem;
@@ -404,6 +401,7 @@ Toastify
     box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
     border-radius: 10px;
     margin: 5rem auto;
+    z-index: 2;
 }
 
 
@@ -593,6 +591,11 @@ Toastify
     opacity: .7;
 }
 
+
+.hide-sidebar-menu{
+    display: none;
+}
+
 /* Responsive */
 
 
@@ -616,12 +619,22 @@ Toastify
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
- 
+
     #sidebar-nav{
         position: absolute;
-        left: -999px;
         top: 0;
-        
+        bottom: 0;
+        left: -999px;
+        height: 100vh;
+        width: 50%;
+        background: #fff;
+        border-right: #F0F0F0 1px solid ;
+        transition: .4s ease-in-out all;
+    }
+
+    #sidebar-nav.active{
+        z-index: 999;
+        left:0;
     }
     
     .main-wrapper{
@@ -644,8 +657,74 @@ Toastify
         width: 100% !important;
 
     }
-        
-  
+
+    .login-container, .main-container{
+        margin: 0 3rem;
+    }
+
+    .hide-sidebar-menu, .burger-menu{
+        font-size: 1.4rem;
+        color: #fff;
+        font-weight: 900;
+        display: inline-block;
+        padding: .3rem;
+        background-color: #fe5196;
+        float: right;
+        cursor: pointer;
+        transition: ease-in-out opacity .3s;
+    }
+
+    .hide-sidebar-menu:hover{
+       opacity: .7;
+    }
+
+    .burger-menu{
+        padding: .5rem;
+    }
+
+    .burger-menu > div{
+        height: 3px;
+        width: 30px;
+        margin-bottom: 7px;
+        background-color: #ffffff;
+    }
+
+    .burger-menu > div:last-child{
+        margin-bottom: 0;
+    }
+
+    .burger-menu:hover{
+        opacity: .7;
+    }
+
+    /*.burger-menu div:nth-child(1) {*/
+    /*    transition-delay: 0.1s;*/
+    /*}*/
+
+    /*.burger-menu div:nth-child(2) {*/
+    /*    transition-delay: 0.2s;*/
+    /*}*/
+
+    /*.burger-menu div:nth-child(3) {*/
+    /*    transition-delay: 0.3s;*/
+    /*}*/
+
+    .burger-menu div{
+        transition: .3s all ease-in-out;
+    }
+
+    .burger-menu.active div:nth-child(1) {
+        transform: rotate(45deg) translate(7px, 6px);
+    }
+
+    .burger-menu.active div:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger-menu.active div:nth-child(3) {
+        transform: rotate(-45deg) translate(8px, -8px);
+    }
+
 }
 
   

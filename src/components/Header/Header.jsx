@@ -1,10 +1,12 @@
 import React, {useEffect} from 'react';
 import firebase from '../../config/firebase';
 import {NavLink, useHistory} from 'react-router-dom';
+import useScript from "../../Utilities/useScript";
+
 
 export default function Header() {
     const history = useHistory();
-
+    useScript('../assets/js/main.js');
     useEffect(() => {
 
         let isCancelled = false;
@@ -23,6 +25,11 @@ export default function Header() {
 
     return (
         <div className="header-wrapper">
+            <div className="burger-menu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
             <div className="searchbar-wrapper">
             </div>
             <div className="user-menu">

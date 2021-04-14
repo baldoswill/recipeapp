@@ -1,21 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import firebase from '../../config/firebase';
-import {NavLink} from 'react-router-dom';
+import {NavLink, withRouter} from 'react-router-dom';
+import CurrentPageContext from "../../Context/CurrentPageContext";
 
-export default function Home() {
-
+function Home() {
     const firestore = firebase.firestore();
     const [recipes, setRecipes] = useState({});
 
-    const handleLikedSubmit = async (e, recipeId) => {
-        e.preventDefault();
-        let userId = await firebase.auth().currentUser.uid;
-        await firestore.collection('likes').add({
-            recipeId,
-            userId,
-            isLiked: true,
-        });
-    }
+    const {setCurrentPage} = useContext(CurrentPageContext);
+    setCurrentPage('Home');
 
     useEffect(() => {
         let isCancelled = false;
@@ -51,7 +44,6 @@ export default function Home() {
                 {recipes && recipes.length > 0 && recipes.map((recipe, index) => (
                     <div className="daily-recipe-box" key={recipe.id}>
                         <img srcSet={recipe.imageUrl} alt=""/>
-                        <i className="fas fa-heart" onClick={e => handleLikedSubmit(e, recipe.id)}></i>
                         <h2 className="divider">
                             <span>
                                 <i className="fas fa-star"></i>
@@ -61,10 +53,10 @@ export default function Home() {
                             <p>{recipe.title}</p>
                         </NavLink>
                     </div>
-
                 ))}
             </div>
         </>
     )
 }
- 
+
+export default withRouter(Home);

@@ -1,22 +1,24 @@
 import  firebase from '../../config/firebase';
-import React, {useState, useRef} from 'react'
+import React, {useRef, useContext} from 'react'
 import { ToastContainer, toast } from 'react-toastify';
-import * as Yup from 'yup';
-import {useForm} from 'react-hook-form';
-import {Formik, Form, ErrorMessage} from 'formik'
+import {withRouter} from "react-router-dom";
+import {Formik, Form, ErrorMessage, Field} from 'formik'
 import TextField from '../Controls/TextField';
+import TextAreaField from '../Controls/TextAreaField';
 import {ValidationSchema} from '../../ValidationSchema/ValidationSchema';
 import UploadHelper from '../../Utilities/UploadHelper';
+import CurrentPageContext from "../../Context/CurrentPageContext";
 
- 
-
-export default function AddRecipe() {
+export function AddRecipe() {
 
      const firestore = firebase.firestore();
     //  const storageRef = firebase.storage();
     const ref = useRef('');
     const {addRecipeSchema} =ValidationSchema();
     const {uploadTaskPromise} = UploadHelper();
+
+    const {setCurrentPage} = useContext(CurrentPageContext);
+    setCurrentPage('Add Recipe');
 
     const initValues = {
       title: '',
@@ -26,14 +28,15 @@ export default function AddRecipe() {
       servings: '',
       picture: ''
     }
- 
 
    const handleSubmit = async(values, onSubmitProps) => {
 
         try{
             const imageUrl = await uploadTaskPromise('All_Files/', values.picture.name, values.picture);
             values.imageUrl = imageUrl;
-            values.uid = await firebase.auth().currentUser.uid;
+            values.ingredients = values.ingredients.replace("\\n",  "\n");
+            values.preparation = values.preparation.replace("\\n",  "\n");
+            values.userId = await firebase.auth().currentUser.uid;
 
             ref.current.value = ""
             delete values.picture;
@@ -53,7 +56,7 @@ export default function AddRecipe() {
                 progress: undefined,
             });
         }catch(error){
-            toast.success(`🦄 ${error.message}`, {
+            toast.error(`🦄 ${error.message}`, {
                 position: "top-right",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -77,12 +80,11 @@ export default function AddRecipe() {
 				<h2 className="daily-recipes-title">Add Recipe</h2>  
 				<Form>
 					<TextField label = 'Title' type = 'text' name = 'title'/>  
-					<TextField label = 'Ingredients' type = 'text' name = 'ingredients'/>  
-					<TextField label = 'Preparation' type = 'text' name = 'preparation'/>  
-					<TextField label = 'Time of Preparation (Minutes)' type = 'number' name = 'time'/>  
-					<TextField label = 'Servings (Persons)' type = 'number' name = 'servings'/>                       
+					<TextAreaField label = 'Ingredients'  name = 'ingredients'/>
+					<TextAreaField label = 'Preparation'  name = 'preparation'/>
+					<TextField label = 'Time of Preparation (Minutes)' type = 'number' name = 'time'/>
+					<TextField label = 'Servings (Persons)' type = 'number' name = 'servings'/>
 					<div className="control-group">
-                  
 						<label htmlFor="preparation" className = 'input-label'>Recipe Image</label>
 						<input type="file"   id="file" onChange = {event => formProps.setFieldValue('picture', event.target.files[0])} name = 'picture' ref = {ref}/>                    
 						<ErrorMessage name = 'picture' > 
@@ -111,3 +113,5 @@ export default function AddRecipe() {
             </Formik>
     )
 }
+
+export default withRouter(AddRecipe);

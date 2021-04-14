@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {NavLink, useHistory} from 'react-router-dom';
 import firebase from '../../config/firebase';
 import {ToastContainer, toast} from 'react-toastify';
@@ -6,6 +6,7 @@ import {Formik, Form, ErrorMessage, useField} from 'formik'
 import AuthTextField from "../Controls/AuthTextField";
 import {facebookProvider, githubProvider, googleProvider} from "../../config/authMethods";
 import {ValidationSchema} from "../../ValidationSchema/ValidationSchema";
+import CurrentPageContext from "../../Context/CurrentPageContext";
 
 
 export default function SignUp(props) {
@@ -19,9 +20,10 @@ export default function SignUp(props) {
     }
 
     const history = useHistory();
+    const {setCurrentPage} = useContext(CurrentPageContext);
+    setCurrentPage('Sign Up');
 
     const handleSignUpSubmit = async (values, onSubmitProps) => {
-
         try {
             await firebase.auth().createUserWithEmailAndPassword(values.email, values.password);
             await firebase.auth().currentUser.updateProfile({

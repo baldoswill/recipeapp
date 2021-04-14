@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import firebase from '../../config/firebase';
 import {Form, Formik} from 'formik';
 import {NavLink, useHistory} from 'react-router-dom';
@@ -8,9 +8,12 @@ import {facebookProvider, githubProvider, googleProvider} from '../../config/aut
 import AuthContext from '../../Context/AuthContext';
 import {ValidationSchema} from "../../ValidationSchema/ValidationSchema";
 import AuthTextField from "../Controls/AuthTextField";
+import CurrentPageContext from "../../Context/CurrentPageContext";
+import useScript from "../../Utilities/useScript";
+
 
 export default function Login() {
-
+    useScript('../assets/js/main.js');
     const {loginSchema} = ValidationSchema();
     const initValues = {
         email: '',
@@ -19,18 +22,37 @@ export default function Login() {
     const history = useHistory();
     const {setUserData} = useContext(AuthContext);
 
+    const {setCurrentPage} = useContext(CurrentPageContext);
+    setCurrentPage('Login');
+
     const handleOnClick = async (provider) => {
-        const resp = await SocialAuthProvider(provider);
-        setUserData(resp.providerData[0]);
-        history.push("/");
+        try{
+            const resp = await SocialAuthProvider(provider);
+            let userDetails = resp.providerData[0];
+            userDetails.isLoggedIn = true;
+            setUserData(userDetails);
+            history.push("/");
+        }catch(error){
+            toast.error(`🦄 ${error.message}`, {
+                position: "top-right",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
     }
 
     const handleLoginSubmit = async (values, onSubmitProps) => {
-
         try {
             await firebase.auth().signInWithEmailAndPassword(values.email, values.password);
             onSubmitProps.setSubmitting(false)
             onSubmitProps.resetForm(initValues);
+            let userDetails = await firebase.auth().currentUser.providerData[0];
+            userDetails.isLoggedIn = true;
+            setUserData(userDetails);
             history.push("/");
         } catch (error) {
             toast.error(`🦄 ${error.message}`, {
