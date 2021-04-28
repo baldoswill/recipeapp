@@ -53,7 +53,7 @@ export default function SignUp(props) {
             validationSchema={signUpSchema}
         >
             <>
-                <h1 className="login-title">Login</h1>
+                <h1 className="login-title">Sign Up</h1>
                 <div className="login-form">
                     <Form>
                         <AuthTextField type="text" placeholder='Type your email'
