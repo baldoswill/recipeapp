@@ -5,7 +5,7 @@ import CurrentPageContext from "../../Context/CurrentPageContext";
 
 function Home() {
     const firestore = firebase.firestore();
-    const [recipes, setRecipes] = useState({});
+    const [recipes, setRecipes] = useState([]);
 
     const {setCurrentPage} = useContext(CurrentPageContext);
     

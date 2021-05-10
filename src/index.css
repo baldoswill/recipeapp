@@ -51,6 +51,10 @@ a{
     background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
 }
 
+.btn-add.saving{
+    background-color: #F7003C;  
+}
+
 
 
 .btn-login, .btn-signup{
@@ -303,6 +307,10 @@ Toastify
 
 #main-content .daily-recipes  .daily-recipe-box > i.active{
     color: #D3324C;
+    font-size: 1.3rem;
+    font-weight: bolder;
+    padding: .2rem;
+    background-color:rgba(43,43,43,0.8);
 }
 
 #main-content .daily-recipes  .daily-recipe-box > i:hover{
@@ -598,6 +606,14 @@ Toastify
 
 .hide-sidebar-menu{
     display: none;
+}
+
+.no-recipes{
+    text-align: center;
+    color: #C71F38;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Responsive */

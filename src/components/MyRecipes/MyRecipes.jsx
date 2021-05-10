@@ -7,7 +7,8 @@ import CurrentPageContext from "../../Context/CurrentPageContext";
 export function MyRecipes() {
 
     const firestore = firebase.firestore();
-    const [recipes, setRecipes] = useState({});
+    const [recipes, setRecipes] = useState([]);
+    const [isLoading, setLoading]= useState(false);
 
     const {setCurrentPage} = useContext(CurrentPageContext);
     
@@ -18,6 +19,7 @@ export function MyRecipes() {
 
         const getAllItems = async () => {
             let recipeArr = [];
+            setLoading(true);
             let userId = await firebase.auth().currentUser.uid;
 
             firestore.collection('recipes')
@@ -32,6 +34,7 @@ export function MyRecipes() {
                 setRecipes(recipeArr);
 
             });
+            setLoading(false);
         }
 
         if (!isCancelled) {
@@ -68,10 +71,12 @@ export function MyRecipes() {
 
    
     return (
+        
         <>
+  
             <h2 className="daily-recipes-title">My Recipes </h2>
             <div className="daily-recipes">
-                {recipes && recipes.length > 0 && recipes.map((recipe, index) => (
+                {recipes.length > 0 ?  recipes.map((recipe, index) => (
                     <div className="daily-recipe-box" key={recipe.id}>
                         <img srcSet={recipe.imageUrl !== null && recipe.imageUrl} alt=""/>
                         <i className="fas fa-times active" onClick={e => handleDeleteRecipe(e, recipe.id)} ></i>
@@ -84,7 +89,7 @@ export function MyRecipes() {
                             <p>{recipe.title}</p>
                         </NavLink>
                     </div>
-                ))}
+                )) : <h2 class = 'no-recipes'>No Recipes</h2>}
                 <ToastContainer
                     position="top-right"
                     autoClose={3000}
