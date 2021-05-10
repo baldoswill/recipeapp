@@ -23,27 +23,27 @@ export default function SideBar() {
     return (
         <div id="sidebar-nav" >
             <i className='fas fa-arrow-left hide-sidebar-menu'></i>
-            <h1 class="site-brand">
-                    <span class="site-brand-text">Cookz</span>   
+            <h1 className="site-brand">
+                    <span className="site-brand-text">Cookz</span>   
             </h1>
-            <h2 class="category-menu">
+            <h2 className="category-menu">
                 Discover
             </h2>
-            <ul class="discover">
-                <li class={handleActiveStyle('Home')}>
-                    <i class="fa fa-home"></i>
+            <ul className="discover">
+                <li className={handleActiveStyle('Home')}>
+                    <i className="fa fa-home"></i>
                     <NavLink to="/" className = 'discover-link'>Home</NavLink>
                 </li>
-                <li class={handleActiveStyle('My Recipes')}>
-                    <i class="fas fa-utensils"></i>  
+                <li className={handleActiveStyle('My Recipes')}>
+                    <i className="fas fa-utensils"></i>  
                     <NavLink to="/my-recipes" className = 'discover-link'>My Recipes</NavLink>
                 </li>
-                <li class={handleActiveStyle('Add Recipe')}>
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i> 
+                <li className={handleActiveStyle('Add Recipe')}>
+                    <i className="fa fa-plus-circle" aria-hidden="true"></i> 
                     <NavLink to="/add-recipe" className = 'discover-link'>Add Recipe</NavLink>
                 </li>
                 <li>
-                    <i class="fas fa-sign-out-alt"></i>
+                    <i className="fas fa-sign-out-alt"></i>
                     <p className = 'discover-link' onClick = {handleSignout}>Logout</p>
                 </li>
             </ul>

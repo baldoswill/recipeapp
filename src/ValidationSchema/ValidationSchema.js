@@ -7,8 +7,7 @@ export function ValidationSchema()  {
         title: Yup.string().required("First Name should be required please")
             .max(30, 'Title should not exceed 30 characters')
             .min(4, 'Title should not be less than 4 characters'),
-        servings: Yup.number().required("Servings should be required please")
-            .min(4, 'Servings should not be less than 4 characters'),
+        servings: Yup.number().required("Servings should be required please"),
         preparation: Yup.string().required("Preparation should be required please")
             .min(4, 'Preparation should not be less than 4 characters'),
         ingredients: Yup.string().required("Ingredients should be required please")

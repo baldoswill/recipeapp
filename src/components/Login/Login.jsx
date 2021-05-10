@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import firebase from '../../config/firebase';
 import {Form, Formik} from 'formik';
 import {NavLink, useHistory} from 'react-router-dom';
@@ -14,6 +14,11 @@ import useScript from "../../Utilities/useScript";
 
 export default function Login() {
     useScript('../assets/js/main.js');
+
+    useEffect(() => {
+        setCurrentPage('Login');
+    }, [])
+
     const {loginSchema} = ValidationSchema();
     const initValues = {
         email: '',
@@ -23,7 +28,7 @@ export default function Login() {
     const {setUserData} = useContext(AuthContext);
 
     const {setCurrentPage} = useContext(CurrentPageContext);
-    setCurrentPage('Login');
+    
 
     const handleOnClick = async (provider) => {
         try{

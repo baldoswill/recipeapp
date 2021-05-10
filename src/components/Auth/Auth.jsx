@@ -6,8 +6,7 @@ export default function Auth() {
 
     const handleOnClick = async(provider) => {
         const resp = await SocialAuthProvider(provider);
-        console.log(resp);
-        console.log(resp.displayName)
+      
     }
 
     return (
