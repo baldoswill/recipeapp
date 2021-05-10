@@ -9,12 +9,12 @@ export function RecipeDetails(props) {
     const firestore = firebase.firestore();
 
     const {setCurrentPage} = useContext(CurrentPageContext);
-    setCurrentPage('Recipe Details');
+    
 
     useEffect(() => {
 
         let id = props.match.params.id
-        console.log(id);
+        setCurrentPage('Recipe Details');
 
         const getItem = () => {
             var docRef = firestore.collection("recipes").doc(id);

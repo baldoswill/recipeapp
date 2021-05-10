@@ -15,9 +15,7 @@ import useScript from "../../Utilities/useScript";
 export default function Login() {
     useScript('../assets/js/main.js');
 
-    useEffect(() => {
-        setCurrentPage('Login');
-    }, [])
+    
 
     const {loginSchema} = ValidationSchema();
     const initValues = {
@@ -29,6 +27,9 @@ export default function Login() {
 
     const {setCurrentPage} = useContext(CurrentPageContext);
     
+    useEffect(() => {
+        setCurrentPage('Login');
+    }, [])
 
     const handleOnClick = async (provider) => {
         try{

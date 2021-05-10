@@ -144,6 +144,7 @@ Toastify
 .main-wrapper{
     width: 100%; 
     max-width: 100%;
+    min-height: 800px;
     display: grid;
     justify-content: space-between !important;
     grid-template-columns: 1.5fr 5fr;
@@ -644,7 +645,7 @@ Toastify
         margin: auto;
         display: grid;
         grid-template-columns: 1fr;
-        
+       
     }
 
         

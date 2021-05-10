@@ -1,5 +1,5 @@
 import  firebase from '../../config/firebase';
-import React, {useRef, useContext} from 'react'
+import React, {useRef, useContext,useEffect} from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import {withRouter} from "react-router-dom";
 import {Formik, Form, ErrorMessage, Field} from 'formik'
@@ -18,7 +18,11 @@ export function AddRecipe() {
     const {uploadTaskPromise} = UploadHelper();
 
     const {setCurrentPage} = useContext(CurrentPageContext);
-    setCurrentPage('Add Recipe');
+
+    useEffect(() => {
+        setCurrentPage('Add Recipe');
+    }, [])
+    
 
     const initValues = {
       title: '',

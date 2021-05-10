@@ -8,10 +8,11 @@ function Home() {
     const [recipes, setRecipes] = useState({});
 
     const {setCurrentPage} = useContext(CurrentPageContext);
-    setCurrentPage('Home');
-
+    
     useEffect(() => {
         let isCancelled = false;
+
+        setCurrentPage('Home');
 
         const getAllItems = async () => {
             let recipeArr = [];

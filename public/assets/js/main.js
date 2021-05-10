@@ -1,18 +1,18 @@
 
 
-let burgerMenu = document.querySelector('.burger-menu');
+let burgerMenux = document.querySelector('.burger-menu');
 let sidenavMenu = document.querySelector('.hide-sidebar-menu');
 
-if(burgerMenu){
-    burgerMenu.addEventListener('click', e =>{
-        burgerMenu.classList.toggle('active');
+if(burgerMenux){
+    burgerMenux.addEventListener('click', e =>{
+        burgerMenux.classList.toggle('active');
         sidenavMenu.classList.toggle('active');
     });
 }
 
 if(sidenavMenu){
     sidenavMenu.addEventListener('click', e =>{
-        burgerMenu.classList.remove('active');
+        burgerMenux.classList.remove('active');
         sidenavMenu.classList.remove('active');
     
     });    

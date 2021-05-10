@@ -10,7 +10,39 @@ export function MyRecipes() {
     const [recipes, setRecipes] = useState({});
 
     const {setCurrentPage} = useContext(CurrentPageContext);
-    setCurrentPage('My Recipes');
+    
+
+    useEffect(() => {
+        let isCancelled = false;
+        setCurrentPage('My Recipes');
+
+        const getAllItems = async () => {
+            let recipeArr = [];
+            let userId = await firebase.auth().currentUser.uid;
+
+            firestore.collection('recipes')
+                .where('userId', '==', userId)
+                .get().then((snapshot) => {
+                snapshot.docs.forEach(doc => {
+                    let items = doc.data();
+
+                    items.id = doc.id;
+                    recipeArr.push(items);
+                });
+                setRecipes(recipeArr);
+
+            });
+        }
+
+        if (!isCancelled) {
+            getAllItems();
+        }
+        return () => {
+            isCancelled = true;
+        };
+
+    }, [])
+
 
     const handleDeleteRecipe = async(e, recipeId) =>  {
         e.preventDefault();
@@ -34,36 +66,7 @@ export function MyRecipes() {
         }
     }
 
-    useEffect(async() => {
-        let isCancelled = false;
-
-        const getAllItems = async () => {
-            let recipeArr = [];
-            let userId = await firebase.auth().currentUser.uid;
-
-            firestore.collection('recipes')
-                .where('userId', '==', userId)
-                .get().then((snapshot) => {
-                snapshot.docs.forEach(doc => {
-                    let items = doc.data();
-
-                    items.id = doc.id;
-                    recipeArr.push(items);
-                });
-                setRecipes(recipeArr);
-
-            });
-        }
-
-        if (!isCancelled) {
-            await getAllItems();
-        }
-        return () => {
-            isCancelled = true;
-        };
-
-    }, [])
-
+   
     return (
         <>
             <h2 className="daily-recipes-title">My Recipes </h2>
