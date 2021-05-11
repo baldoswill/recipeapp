@@ -10,7 +10,7 @@ import UploadHelper from '../../Utilities/UploadHelper';
 import CurrentPageContext from "../../Context/CurrentPageContext";
 
 import { css } from "@emotion/core";
-import ClipLoader from "react-spinners/BounceLoader";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const override = css`
     display: inline-block;      

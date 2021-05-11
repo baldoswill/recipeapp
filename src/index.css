@@ -54,9 +54,7 @@ a{
 .btn-add.saving{
     background-color: #F7003C;  
 }
-
-
-
+ 
 .btn-login, .btn-signup{
     background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%)  ;
     color: #fff;
@@ -614,6 +612,10 @@ Toastify
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.no-recipes.show{
+    display: flex;
 }
 
 /* Responsive */

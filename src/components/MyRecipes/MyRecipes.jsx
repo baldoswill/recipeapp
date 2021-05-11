@@ -36,7 +36,7 @@ export function MyRecipes() {
             });
             setLoading(false);
         }
-
+ 
         if (!isCancelled) {
             getAllItems();
         }
@@ -68,12 +68,10 @@ export function MyRecipes() {
             });
         }
     }
-
-   
+ 
     return (
         
         <>
-  
             <h2 className="daily-recipes-title">My Recipes </h2>
             <div className="daily-recipes">
                 {recipes.length > 0 ?  recipes.map((recipe, index) => (
@@ -89,7 +87,7 @@ export function MyRecipes() {
                             <p>{recipe.title}</p>
                         </NavLink>
                     </div>
-                )) : <h2 class = 'no-recipes'>No Recipes</h2>}
+                )) : <h3 class="no-recipes">No Recipes</h3>}               
                 <ToastContainer
                     position="top-right"
                     autoClose={3000}
