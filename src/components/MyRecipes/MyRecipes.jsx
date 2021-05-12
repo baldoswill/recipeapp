@@ -12,7 +12,6 @@ export function MyRecipes() {
 
     const {setCurrentPage} = useContext(CurrentPageContext);
     
-
     useEffect(() => {
         let isCancelled = false;
         setCurrentPage('My Recipes');
@@ -44,7 +43,7 @@ export function MyRecipes() {
             isCancelled = true;
         };
 
-    }, [])
+    }, []);
 
 
     const handleDeleteRecipe = async(e, recipeId) =>  {
@@ -73,8 +72,8 @@ export function MyRecipes() {
         
         <>
             <h2 className="daily-recipes-title">My Recipes </h2>
-            <div className="daily-recipes">
-                {recipes.length > 0 ?  recipes.map((recipe, index) => (
+            <div className="daily-recipes">                                  
+                { recipes.map((recipe, index) => (
                     <div className="daily-recipe-box" key={recipe.id}>
                         <img srcSet={recipe.imageUrl !== null && recipe.imageUrl} alt=""/>
                         <i className="fas fa-times active" onClick={e => handleDeleteRecipe(e, recipe.id)} ></i>
@@ -86,8 +85,7 @@ export function MyRecipes() {
                         <NavLink to={`/details/${recipe.id}`}>
                             <p>{recipe.title}</p>
                         </NavLink>
-                    </div>
-                )) : <h3 class="no-recipes">No Recipes</h3>}               
+                    </div> ))}
                 <ToastContainer
                     position="top-right"
                     autoClose={3000}

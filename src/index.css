@@ -37,6 +37,7 @@ a{
     font-weight: bold;    
     margin-bottom: 1rem;
     margin-top: 1rem;
+    z-index: 3 !important;
 }
 
 .btn-add{
@@ -61,8 +62,7 @@ a{
     display: block  !important;
     width: 100%;
     transition: background-position .3s cubic-bezier(.47, .1, 1, .63),
-    color .2s linear;
-     
+    color .2s linear;     
     margin-top: 5rem;
     margin-bottom: 1rem;
    
@@ -72,7 +72,9 @@ a{
     transition: ease-out 0.4s;
  
     background-size: 200% auto;    
-    background-image: linear-gradient(to right, #fda085 0%, #fe5196 50%, #f77062 100%)  ;       
+    background-image: linear-gradient(to right, #fda085 0%, #fe5196 50%, #f77062 100%)  ;      
+    
+   
 }
 
 .btn-login:hover, .btn-signup:hover {
@@ -141,6 +143,7 @@ Toastify
     border-radius: 25px;
     margin: 5rem auto;
     height: 100%;
+    position: relative;  
 }
  
 .main-wrapper{
@@ -414,6 +417,22 @@ Toastify
     z-index: 2;
 }
 
+.add-recipe-form.saving{
+    position: relative;
+}
+
+.add-recipe-form.saving::after{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;        
+    top: 0;
+    content: '';
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 7;
+        
+}
+
 
 .login-container{
     margin:8rem auto;
@@ -648,15 +667,16 @@ Toastify
         bottom: 0;
         left: -999px;
         height: 100vh;
-        width: 50%;
+        width: 54%;
         background: #fff;
         border-right: #F0F0F0 1px solid ;
         transition: .4s ease-in-out all;
+        z-index: 99999;
     }
 
     #sidebar-nav.active{
-        z-index: 999;
-        left:0;
+       
+        left:-49px;
     }
     
     .main-wrapper{
@@ -665,8 +685,7 @@ Toastify
         grid-template-columns: 1fr;
        
     }
-
-        
+ 
     #main-content .daily-recipes  .daily-recipe-box img{ 
         max-width:100%; 
         height:auto; 

@@ -13,22 +13,23 @@ import { css } from "@emotion/core";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const override = css`
-    display: inline-block;      
+    display: flex;      
     text-align: center;         
     position: absolute;          
-    left: 50%;                    
-    bottom: 10px;                 
+    left: 37%;                    
+    bottom: 41%;                 
     transform: translateX(-50%);     
     border-color: #C71F38;
     background-color: pink;
+    z-index: 999;
     `;
 
 export function AddRecipe() {
 
     let [loading, setLoading] = useState(false);
     let [color, setColor] = useState("#ffffff");
-    let btnClasses = ['btn', 'btn-add'];
     
+
 
     const firestore = firebase.firestore();
     //  const storageRef = firebase.storage();
@@ -56,7 +57,7 @@ export function AddRecipe() {
 
         try {
             setLoading(true);
-            btnClasses.push(' saving');
+       
             const imageUrl = await uploadTaskPromise('All_Files/', values.picture.name, values.picture);
             values.imageUrl = imageUrl;
             values.ingredients = values.ingredients.replace("\\n", "\n");
@@ -73,7 +74,7 @@ export function AddRecipe() {
 
             toast.success('🦄 Successfully added a new recipe!', {
                 position: "top-right",
-                autoClose: 3000,
+                autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -83,7 +84,7 @@ export function AddRecipe() {
         } catch (error) {
             toast.error(`🦄 ${error.message}`, {
                 position: "top-right",
-                autoClose: 3000,
+                autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -92,56 +93,54 @@ export function AddRecipe() {
             });
         }
 
-        setLoading(false);
-        btnClasses.pop();
+        setLoading(false);       
 
     }
 
     return (
-        <Formik
-            initialValues={initValues}
-            validationSchema={addRecipeSchema}
-            onSubmit={handleSubmit}
-        >
-            {formProps => (
-                <>
-                    <h2 className="daily-recipes-title">Add Recipe</h2>
-                    <ClipLoader color={color} loading={loading} css={override} size={150} />
-                    <Form>
-                        <TextField label='Title' type='text' name='title' />
-                        <TextAreaField label='Ingredients' name='ingredients' />
-                        <TextAreaField label='Preparation' name='preparation' />                        
-                        <TextField label='Time of Preparation (Minutes)' type='number' name='time' />
-                        <TextField label='Servings (Persons)' type='number' name='servings' />
-                        <div className="control-group">
-                            <label htmlFor="preparation" className='input-label'>Recipe Image</label>
-                            <input type="file" id="file" onChange={event => formProps.setFieldValue('picture', event.target.files[0])} name='picture' ref={ref} />
-                            <ErrorMessage name='picture' >
-                                {msg => <div className='error-input'>{msg}</div>}
-                            </ErrorMessage>
-                        </div>
-                        <div className="control-group">
-                            <button className={btnClasses.join(' ')} disabled={loading}>Add New Recipe</button>
-                        </div>
-                       
-
-                    </Form>
-                    <ToastContainer
-                        position="top-right"
-                        autoClose={3000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                        bodyClassName="toastBody"
-                    />
-                </>
-            )}
-
-        </Formik>
+        <div className = {loading ? 'add-recipe-form saving' : 'add-recipe-form'}>
+            <Formik
+                initialValues={initValues}
+                validationSchema={addRecipeSchema}
+                onSubmit={handleSubmit}
+            >
+                {formProps => (
+                    <>
+                        <h2 className="daily-recipes-title">Add Recipe</h2>
+                        <ClipLoader color={color} loading={loading} css={override} size={150} />
+                        <Form>
+                            <TextField label='Title' type='text' name='title' />
+                            <TextAreaField label='Ingredients' name='ingredients' />
+                            <TextAreaField label='Preparation' name='preparation' />
+                            <TextField label='Time of Preparation (Minutes)' type='number' name='time' />
+                            <TextField label='Servings (Persons)' type='number' name='servings' />
+                            <div className="control-group">
+                                <label htmlFor="preparation" className='input-label'>Recipe Image</label>
+                                <input type="file" id="file" onChange={event => formProps.setFieldValue('picture', event.target.files[0])} name='picture' ref={ref} />
+                                <ErrorMessage name='picture' >
+                                    {msg => <div className='error-input'>{msg}</div>}
+                                </ErrorMessage>
+                            </div>
+                            <div className="control-group">
+                                <button className= 'btn btn-add' disabled={loading}>Add New Recipe</button>
+                            </div>
+                        </Form>
+                        <ToastContainer
+                            position="top-right"
+                            autoClose={3000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            bodyClassName="toastBody"
+                        />
+                    </>
+                )}
+            </Formik>
+        </div>
     )
 }
 
